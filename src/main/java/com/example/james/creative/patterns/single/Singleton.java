@@ -17,7 +17,7 @@ public class Singleton {
         if (null == instance) {
             instance = new Singleton();
         }
-        System.out.println("这里是test2");
+        System.out.println("这里是test4");
         return instance;
     }
 }
