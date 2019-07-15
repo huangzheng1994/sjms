@@ -2,20 +2,21 @@ package com.example.james.creative.patterns.factory;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 
 /**
  * @author hz
- * @date 2019-2-14 11:10
+ * @date 2019-6-24 19:37
  */
 public class TestTest {
 
     @Test
-    public void factoryTest() {
-        DogFactory dogFactory = new DogFactory();
-        System.out.println("狗狗的工厂方法: " + dogFactory.produce().race());
+    public void factoryTest() throws Exception {
+        CarFactory benz = (CarFactory) Class.forName("com.example.james.creative.patterns.factory.BenzFactory").newInstance();
+        String brand = benz.product().getBrand();
 
-        TigerFactory tigerFactory = new TigerFactory();
-        System.out.println("老虎的工厂方法: " + tigerFactory.produce().race());
+        CarFactory bmw = (CarFactory) Class.forName("com.example.james.creative.patterns.factory.BmwFactory").newInstance();
+        String brand1 = bmw.product().getBrand();
+        System.out.println(brand + "||||" + brand1);
     }
+
 }

@@ -25,9 +25,7 @@ public class Singleton5 {
          */
         INSTANCE;
 
-        /**
-         * 需要的单例
-         */
+        // 需要的单例
         private Singleton5 singleton;
 
         /**
