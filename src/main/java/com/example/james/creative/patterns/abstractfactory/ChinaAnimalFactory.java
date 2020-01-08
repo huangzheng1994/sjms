@@ -1,6 +1,8 @@
 package com.example.james.creative.patterns.abstractfactory;
 
 /**
+ * 中国动物园工厂
+ *
  * @author hz
  * @date 2019-2-14 14:54
  */

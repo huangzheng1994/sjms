@@ -1,8 +1,10 @@
 package com.example.james.simple.factory;
 
+import com.example.james.creative.patterns.simple.factory.Animal;
+import com.example.james.creative.patterns.simple.factory.MethodsSimpleFactory;
+import com.example.james.creative.patterns.simple.factory.SimpleFactory;
+import com.example.james.creative.patterns.simple.factory.StaticMethodSimpleFactory;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * @author hz

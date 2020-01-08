@@ -1,4 +1,4 @@
-package com.example.james.simple.factory;
+package com.example.james.creative.patterns.simple.factory;
 
 /**
  * 简单工厂模式:用来生成同一等级结构中的任意产品, 对于增加新的产品, 需要修改已有代码
