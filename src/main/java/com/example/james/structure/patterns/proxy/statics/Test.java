@@ -1,6 +1,8 @@
-package com.example.james.structure.patterns.proxy;
+package com.example.james.structure.patterns.proxy.statics;
 
 /**
+ * 静态代理测试
+ *
  * @author hz
  * @date 2020-1-7 17:52
  */

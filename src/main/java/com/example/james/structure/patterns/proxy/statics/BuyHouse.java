@@ -1,4 +1,4 @@
-package com.example.james.structure.patterns.proxy;
+package com.example.james.structure.patterns.proxy.statics;
 
 /**
  * 买房子接口服务

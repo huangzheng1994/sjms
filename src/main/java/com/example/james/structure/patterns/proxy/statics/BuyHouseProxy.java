@@ -1,4 +1,4 @@
-package com.example.james.structure.patterns.proxy;
+package com.example.james.structure.patterns.proxy.statics;
 
 /**
  * @author hz
