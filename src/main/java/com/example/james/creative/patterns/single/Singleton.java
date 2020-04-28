@@ -20,7 +20,6 @@ public class Singleton {
         if (null == instance) {
             instance = new Singleton();
         }
-        System.out.println("这里是test5   ");
         return instance;
     }
 }
