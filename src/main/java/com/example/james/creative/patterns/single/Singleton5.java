@@ -11,7 +11,10 @@ package com.example.james.creative.patterns.single;
  */
 public class Singleton5 {
 
+    private int a = 1;
+
     private Singleton5() {
+        System.out.println("==无参构造函数");
     }
 
     public static Singleton5 getInstance() {
@@ -25,20 +28,26 @@ public class Singleton5 {
          */
         INSTANCE;
 
-        /**
-         * 需要的单例
-         */
+        // 需要的单例
         private Singleton5 singleton;
 
         /**
          * JVM会保证此方法绝对只调用一次
          */
         Singleton() {
+            System.out.println("==>枚举实例化");
             singleton = new Singleton5();
         }
 
         public Singleton5 getInstance() {
             return singleton;
         }
+    }
+
+    public static void main(String[] args) {
+        Singleton5 instance = Singleton5.getInstance();
+
+        System.out.println(instance.a);
+
     }
 }

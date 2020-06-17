@@ -2,6 +2,8 @@ package com.example.james.creative.patterns.abstractfactory;
 
 import jdk.internal.org.objectweb.asm.tree.analysis.Analyzer;
 
+import javax.xml.crypto.Data;
+
 /**
  * @author hz
  * @date 2019-2-14 15:09
@@ -17,7 +19,7 @@ public class Test {
      * @date: 2019-2-14 15:16
      */
     public void chinaAnimalFactory() {
-        AbstractAnimalFactory factory = new ChinaAnimalFactory();
+        AbstractAnimalFactory factory = AbstractAnimalFactory.defaultFactory(ChinaAnimalFactory.class);
         String chinaCat = factory.createCat();
         System.out.println("chinaCat:" + chinaCat);
 
@@ -41,21 +43,30 @@ public class Test {
      * @date: 2019-2-14 15:18
      */
     public void usaAnimalFactory() {
-        AbstractAnimalFactory factory = new UsaAnimalFactory();
+        AbstractAnimalFactory factory = AbstractAnimalFactory.defaultFactory(UsaAnimalFactory.class);
+
         String usaCat = factory.createCat();
         System.out.println("usaCat:" + usaCat);
 
         String usaMonkey = factory.createMonkey();
         System.out.println("usaMonkey:" + usaMonkey);
 
-        String usaPig = ((UsaAnimalFactory) factory).createPig();
-        System.out.println("usaPig:" + usaPig);
+        if (factory instanceof UsaAnimalFactory) {
+            String usaPig = ((UsaAnimalFactory) factory).createPig();
+            System.out.println("usaPig:" + usaPig);
+        }
+
 
         Animal usaDog = factory.createDog();
         System.out.println("usaDog:" + usaDog.race());
 
         Animal usaTiger = factory.createTiger();
         System.out.println("usaTiger:" + usaTiger.race());
+    }
+
+    public static void main(String[] args) {
+        Test test = new Test();
+        test.usaAnimalFactory();
     }
 
 }

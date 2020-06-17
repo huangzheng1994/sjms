@@ -1,4 +1,4 @@
-package com.example.james.simple.factory;
+package com.example.james.creative.patterns.simple.factory;
 
 /**
  * @author hz

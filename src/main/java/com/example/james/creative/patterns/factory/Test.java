@@ -1,5 +1,7 @@
 package com.example.james.creative.patterns.factory;
 
+import java.util.*;
+
 /**
  * 工厂方法测试
  *
@@ -16,13 +18,14 @@ public class Test {
      * @auther: hz
      * @date: 2019-2-14 11:03
      */
-    public void factoryTest() {
-        DogFactory dogFactory = new DogFactory();
-        System.out.println("狗狗的工厂方法" + dogFactory.produce().race());
+    public void factoryTest() throws Exception {
+//        CarFactory benz = new BenzFactory();
+        CarFactory benz = (CarFactory) Class.forName("com.example.james.creative.patterns.factory.BenzFactory").newInstance();
+        String brand = benz.product().getBrand();
 
-        TigerFactory tigerFactory = new TigerFactory();
-        System.out.println("老虎的工厂方法" + tigerFactory.produce().race());
-
+//        CarFactory bmw = new BmwFactory();
+        CarFactory bmw = (CarFactory) Class.forName("com.example.james.creative.patterns.factory.BmwFactory").newInstance();
+        String brand1 = bmw.product().getBrand();
     }
 
 }

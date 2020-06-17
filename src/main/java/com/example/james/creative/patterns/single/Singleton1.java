@@ -1,7 +1,7 @@
 package com.example.james.creative.patterns.single;
 
 /**
- * 饿汗式单例(立即加载)
+ * 饿汉式单例(立即加载)
  * 静态常量
  *
  * 优点：这种写法比较简单，就是在类装载的时候就完成实例化。避免了线程同步问题。

@@ -1,8 +1,8 @@
-package com.example.james.creative.patterns.factory;
+package com.example.james.creative.patterns.simple.factory;
 
 /**
  * @author hz
- * @date 2019-2-14 10:51
+ * @date 2019-2-13 20:04
  */
 public interface Animal {
 
@@ -12,7 +12,8 @@ public interface Animal {
      * @param
      * @return
      * @auther: hz
-     * @date: 2019-2-14 10:53
+     * @date: 2019-2-13 20:06
      */
     String race();
+
 }
