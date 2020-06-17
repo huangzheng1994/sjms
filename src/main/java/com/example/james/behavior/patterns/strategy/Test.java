@@ -61,5 +61,7 @@ public class Test {
 //        System.out.println(aa.intern() == a4);//true
         System.out.println(a3 == a3.intern());//false
 
+        System.out.println("测试11111");
+
     }
 }
