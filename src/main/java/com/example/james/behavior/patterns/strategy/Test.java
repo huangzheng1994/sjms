@@ -59,7 +59,11 @@ public class Test {
 //        System.out.println(aa == aaaa);//true
 //        System.out.println(aa == a4);//true
 //        System.out.println(aa.intern() == a4);//true
-//        System.out.println(a3 == a3.intern());//false
-        System.out.println("测试1");
+        System.out.println(a3 == a3.intern());//false
+
+        System.out.println("测试4");
+        System.out.println("测试5");
+        
+
     }
 }
