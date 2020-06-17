@@ -62,8 +62,6 @@ public class Test {
         System.out.println(a3 == a3.intern());//false
 
         System.out.println("测试4");
-        System.out.println("测试5");
-        
 
     }
 }
