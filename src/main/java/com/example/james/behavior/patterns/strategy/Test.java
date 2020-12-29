@@ -3,9 +3,17 @@ package com.example.james.behavior.patterns.strategy;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.checkerframework.checker.units.qual.A;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * @author hz
@@ -14,57 +22,63 @@ import java.util.concurrent.*;
 public class Test {
 
 
-    public static void main(String[] args) {
-//        String str1 = "abcd"; // 常量池创建"abcd"
-//        String str2 = "abcd"; // str2还是上一步的"abcd"
-//        String str3 = "ab" + "cd"; // 常量池创建"ab"和"cd"，连接过程编译器直接优化成"abcd"，而常量池已经有了"abcd"，所以str3和str1都指向"abcd"
-//        String str5 = "ab";
-//        String s = new String("ab")+new String("cd");
-//        String str4 = "ab";
-//        String str5 = "cd";
-//        str4 += "cd";
-//        String a = str4 + str5;
-//        String aa = new String("ab");//指向堆内存
-//        System.out.println("aa=" + (aa == aa.intern()));//fales,aa指向的堆内存地址,而aa.intern()方法返回的是常量池中的地址
-//        String bb = "cd";//指向常量池
-//        System.out.println("cd=" + (bb == bb.intern()));//fales,aa指向的堆内存地址,而aa.intern()方法返回的是常量池中的地址
-//        String a = aa + bb;
-//        System.out.println(a.intern() == a); // true指向常量池,false-指向堆
-//        System.out.println("================");
-//        String s1 = "a";
-//        String s2 = "b";
-//        String s3 = "ab";
-//        final String ss1 = "a";
-//        final String ss2 = "b";
-//        System.out.println(s1 + s2 == s3); // false, 有变量引用的字符串是不能优化的，除非变量是final修饰，这一行就是s1+s2生成堆里的"ab"和常量池的"ab"在比较
-//        System.out.println(ss1 + ss2 == s3); // true，原因见上一行，原理和下一行相同，都是常量连接
-//        System.out.println("a" + "b" == s3); // true,常量池的"a"和"b"连接，根据Copy On Write机制, 副本连接生成"ab"，发现已存在，直接指向"ab"，所以和s3相等
-
-//        String a = new StringBuilder().append("abcd").toString();
-//        String a = new String("abcd");
-//        String c = new StringBuilder().append("e").toString();
-//        String a4 = new String("AB");//在堆和常量池分别创建.指向堆
-//        String a4 = "AB";//在常量池创建.指向常量池
-
-        //1:已知在堆和常量池分别创建"AB",则aa在堆中创建"AB",并且指向他
-        //2:
-//        String aa = a2 + a3;//堆=未知,常量池创建,指向常量池
-//        String a1 = "A";
-//        a1+="B";
-//        String aa = a1 + "B" + "C";//堆创建,指向堆
-        String a3 = new String("A") + new String("B");
-//        System.out.println(a4 == a4.intern());//true
-        String a4 = "AB";
-        System.out.println(a3 == a3.intern());//true
-//        System.out.println(aa == aaaa);//true
-//        System.out.println(aa == a4);//true
-//        System.out.println(aa.intern() == a4);//true
-        System.out.println(a3 == a3.intern());//false
-
-        System.out.println("测试4");
-        System.out.println("测试5");
-        System.out.println("测试6");
-        System.out.println("这里是test4分支");
-
+    public int test(int a) {
+        return 1;
     }
+
+    public static double test1(int b) {
+        return 2;
+    }
+
+    public static void main(String[] args) {
+//        String s1 = "# -*- coding: utf-8 -*-\nfrom com.elimiot.elim.cloud.bot.ifttt.client.InternalClient import *\n\n\nif __name__ == \"__main__\":\n\n    args = _context.getEventMap().get(\"deviceReport\").getPayload().getPayload()\n    tid = _event.getPayload().getDevTid()\n    device_type = _context.getEventMap().get(\"deviceReport\").getPayload().getType().getNumber()\n    result = 0\n    same_device_type = 0\n    exclude = {}\n    if 15325 == device_type:\n        same_device_type=same_device_type+1\n        left=[]\n        left.append(\"E162354966780\")\n        for key in args.keys():\n            if key in left:\n                if _client.isAssignTime(\"00:00\",\"23:59\") :\n                    assignValues=_client.updateAssignTime(\"5f0eb5b5058836740105d76e\",tid,15325,args.get(key),True)\n                    assignValues_len=len(assignValues)\n                    if args.get(key)>=300:\n                        exclude.setdefault(key,args.get(key))\n                        result=result+1\n                else :\n                    _client.updateAssignTime(\"5f0eb5b5058836740105d76e\",tid,15325,args.get(key),False)\n    if 15325 == device_type:\n        same_device_type=same_device_type+1\n        left=[]\n        left.append(\"E162354966780\")\n        for key in args.keys():\n            if key in left:\n                if _client.isAssignTime(\"00:00\",\"23:59\") :\n                    assignValues=_client.updateAssignTime(\"5f0eb5b5058836740105d76e\",tid,15325,args.get(key),True)\n                    assignValues_len=len(assignValues)\n                    if args.get(key)<=10:\n                        exclude.setdefault(key,args.get(key))\n                        result=result+1\n                else :\n                    _client.updateAssignTime(\"5f0eb5b5058836740105d76e\",tid,15325,args.get(key),False)\n    if same_device_type == result and result != 2:\n        if 15325 != device_type:\n            alarmRuleConditions=_client.getAlarmRuleConditionList(\"5f0eb5b5058836740105d76e\",15325)\n            if len(alarmRuleConditions) > 0 :\n                for condition in  alarmRuleConditions :\n                    last_result=result+1\n                    if _client.isAssignTime(\"00:00\",\"23:59\") :\n                        assignValues=condition.getAssignValues()\n                        assignValues_len=len(assignValues)\n                        if assignValues_len > 0 and assignValues[assignValues_len-1] >=300:\n                            result=result+1\n                    if last_result== result:\n                        break\n        if 15325 != device_type:\n            alarmRuleConditions=_client.getAlarmRuleConditionList(\"5f0eb5b5058836740105d76e\",15325)\n            if len(alarmRuleConditions) > 0 :\n                for condition in  alarmRuleConditions :\n                    last_result=result+1\n                    if _client.isAssignTime(\"00:00\",\"23:59\") :\n                        assignValues=condition.getAssignValues()\n                        assignValues_len=len(assignValues)\n                        if assignValues_len > 0 and assignValues[assignValues_len-1] <=10:\n                            result=result+1\n                    if last_result== result:\n                        break\n    if result == 2:\n        print(exclude)\n        _client.removeData(exclude,tid)\n        _client.storeAlarmMsg(tid,\"%E5%A4%AA%E9%98%B3%E8%83%BD%E6%B0%B4%E7%AE%B1%E6%B0%B4%E4%BD%8D%E6%95%85%E9%9A%9C\", \"ERROR\",\"5f0eb5b5058836740105d76e\",\"5f0eb5b5058836740105d76e\")\n";
+//        System.out.println(s1);
+//        String a = "%E5%A4%AA%E9%98%B3%E8%83%BD%E6%B0%B4%E7%AE%B1%E6%B0%B4%E4%BD%8D%E6%95%85%E9%9A%9C";
+//        String b ="# -*- coding: utf-8 -*-\n# !/usr/bin/env jython\nfrom me.hekr.bot.ifttt.client.InternalClient import *\n\n\nif __name__ == \"__main__\":\n\n    args = _context.getEventMap().get(\"deviceReport\").getPayload().getPayload()\n    tid = _event.getPayload().getDevTid()\n    device_type = _context.getEventMap().get(\"deviceReport\").getPayload().getType()\n    result = 0\n    same_device_type = 0\n    if 79 == device_type:\n        same_device_type=same_device_type+1\n        left=[]\n        left.append(\"H0179001001\")\n        left.append(\"H0279001001\")\n        left.append(\"H0379001001\")\n        left.append(\"H0479001001\")\n        left.append(\"H0579001001\")\n        left.append(\"H0679001001\")\n        for key in args.keys():\n            if key in left:\n                if _client.isAssignTime(\"00:00\",\"23:59\") :\n                    assignValues=_client.updateAssignTime(\"5dc4bb0dd2e47e237dcc2637\",tid,79,args.get(key),True)\n                    assignValues_len=len(assignValues)\n                    if args.get(key)==1:\n                        result=result+1\n                else :\n                    _client.updateAssignTime(\"5dc4bb0dd2e47e237dcc2637\",tid,79,args.get(key),False)\n    if same_device_type == result and result != 1:\n        if 79 != device_type:\n            alarmRuleConditions=_client.getAlarmRuleConditionList(\"5dc4bb0dd2e47e237dcc2637\",79)\n            if len(alarmRuleConditions) > 0 :\n                for condition in  alarmRuleConditions :\n                    last_result=result+1\n                    if _client.isAssignTime(\"00:00\",\"23:59\") :\n                        assignValues=condition.getAssignValues()\n                        assignValues_len=len(assignValues)\n                        if assignValues_len > 0 and assignValues[assignValues_len-1] ==1:\n                            result=result+1\n                    if last_result== result:\n                        break\n    if result == 1:\n        _client.storeAlarmMsg(tid,\"%E5%9C%A8%E6%8C%87%E5%AE%9A%E6%97%B6%E9%97%B4%E5%86%8500%3A00-23%3A59%E7%83%AD%E6%B0%B4%E6%B0%B4%E7%AE%B1%E6%B8%A9%E5%BA%A6%E6%95%85%E9%9A%9C%E5%8F%96%E5%80%BC%E7%AD%89%E4%BA%8E1\", \"WARNING\",\"5dc4bb0dd2e47e237dcc2637\",\"5dc4bb0dd2e47e237dcc2637\")\n";
+//        String c = "# -*- coding: utf-8 -*-\nfrom com.elimiot.elim.cloud.bot.ifttt.client.InternalClient import *\n\n\nif __name__ == \"__main__\":\n\n    args = _context.getEventMap().get(\"deviceReport\").getPayload().getPayload()\n    tid = _event.getPayload().getDevTid()\n    device_type = _context.getEventMap().get(\"deviceReport\").getPayload().getType().getNumber()\n    result = 0\n    same_device_type = 0\n    exclude = {}\n    if 15325 == device_type:\n        same_device_type=same_device_type+1\n        left=[]\n        left.append(\"E162355017544\")\n        for key in args.keys():\n            if key in left:\n                if _client.isAssignTime(\"00:00\",\"23:59\") :\n                    assignValues=_client.updateAssignTime(\"5f0eb5b5058836740105d770\",tid,15325,args.get(key),True)\n                    assignValues_len=len(assignValues)\n                    if args.get(key)nullnull:\n                        exclude.setdefault(key,args.get(key))\n                        result=result+1\n                else :\n                    _client.updateAssignTime(\"5f0eb5b5058836740105d770\",tid,15325,args.get(key),False)\n    if same_device_type == result and result != 1:\n        if 15325 != device_type:\n            alarmRuleConditions=_client.getAlarmRuleConditionList(\"5f0eb5b5058836740105d770\",15325)\n            if len(alarmRuleConditions) > 0 :\n                for condition in  alarmRuleConditions :\n                    last_result=result+1\n                    if _client.isAssignTime(\"00:00\",\"23:59\") :\n                        assignValues=condition.getAssignValues()\n                        assignValues_len=len(assignValues)\n                        if assignValues_len > 0 and assignValues[assignValues_len-1] nullnull:\n                            result=result+1\n                    if last_result== result:\n                        break\n    if result == 1:\n        print(exclude)\n        _client.removeData(exclude,tid)\n        _client.storeAlarmMsg(tid,\"%E5%8E%8B%E5%8A%9B%E4%BC%A0%E6%84%9F%E5%99%A8%E6%95%85%E9%9A%9C\", \"ERROR\",\"5f0eb5b5058836740105d770\",\"5f0eb5b5058836740105d770\")\n";
+
+//        String aa = "if __name__ == \"__main__\":\n\n    args = _context.getEventMap().get(\"deviceReport\").getPayload().getPayload()\n    tid = _event.getPayload().getDevTid()\n    device_type = _context.getEventMap().get(\"deviceReport\").getPayload().getType().getNumber()\n    result = 0\n    same_device_type = 0\n    exclude = {}\n    if 15325 == device_type:\n        same_device_type=same_device_type+1\n        left=[]\n        left.append(\"E162354966780\")\n        for key in args.keys():\n            if key in left:\n                if _client.isAssignTime(\"00:00\",\"23:59\") :\n                    assignValues=_client.updateAssignTime(\"5f0eb5b5058836740105d76e\",tid,15325,args.get(key),True)\n                    assignValues_len=len(assignValues)\n                    if args.get(key)>=300:\n                        exclude.setdefault(key,args.get(key))\n                        result=result+1\n                else :\n                    _client.updateAssignTime(\"5f0eb5b5058836740105d76e\",tid,15325,args.get(key),False)\n    if 15325 == device_type:\n        same_device_type=same_device_type+1\n        left=[]\n        left.append(\"E162354966780\")\n        for key in args.keys():\n            if key in left:\n                if _client.isAssignTime(\"00:00\",\"23:59\") :\n                    assignValues=_client.updateAssignTime(\"5f0eb5b5058836740105d76e\",tid,15325,args.get(key),True)\n                    assignValues_len=len(assignValues)\n                    if args.get(key)<=10:\n                        exclude.setdefault(key,args.get(key))\n                        result=result+1\n                else :\n                    _client.updateAssignTime(\"5f0eb5b5058836740105d76e\",tid,15325,args.get(key),False)\n    if same_device_type == result and result != 2:\n        if 15325 != device_type:\n            alarmRuleConditions=_client.getAlarmRuleConditionList(\"5f0eb5b5058836740105d76e\",15325)\n            if len(alarmRuleConditions) > 0 :\n                for condition in  alarmRuleConditions :\n                    last_result=result+1\n                    if _client.isAssignTime(\"00:00\",\"23:59\") :\n                        assignValues=condition.getAssignValues()\n                        assignValues_len=len(assignValues)\n                        if assignValues_len > 0 and assignValues[assignValues_len-1] >=300:\n                            result=result+1\n                    if last_result== result:\n                        break\n        if 15325 != device_type:\n            alarmRuleConditions=_client.getAlarmRuleConditionList(\"5f0eb5b5058836740105d76e\",15325)\n            if len(alarmRuleConditions) > 0 :\n                for condition in  alarmRuleConditions :\n                    last_result=result+1\n                    if _client.isAssignTime(\"00:00\",\"23:59\") :\n                        assignValues=condition.getAssignValues()\n                        assignValues_len=len(assignValues)\n                        if assignValues_len > 0 and assignValues[assignValues_len-1] <=10:\n                            result=result+1\n                    if last_result== result:\n                        break\n    if result == 2:\n        _client.removeData(exclude,tid)\n        _client.storeAlarmMsg(tid,\"%E5%A4%AA%E9%98%B3%E8%83%BD%E6%B0%B4%E7%AE%B1%E6%B0%B4%E4%BD%8D%E6%95%85%E9%9A%9C\", \"ERROR\",\"5f0eb5b5058836740105d76e\",\"5f0eb5b5058836740105d76e\")\n";
+//        String bb = "if __name__ == \"__main__\":\n\n    args = _context.getEventMap().get(\"deviceReport\").getPayload().getPayload()\n    tid = _event.getPayload().getDevTid()\n    device_type = _context.getEventMap().get(\"deviceReport\").getPayload().getType().getNumber()\n    result = 0\n    same_device_type = 0\n    exclude = {}\n    if 84802 == device_type:\n        same_device_type=same_device_type+1\n        left=[]\n        left.append(\"E162354969848\")\n        for key in args.keys():\n            if key in left:\n                continueValues=_client.updateContinueTime(\"5f50c43c8fe8c076c1ac0297\",tid,4445,84802,args.get(key))\n                continueValue_result=0\n                continueValue_len=len(continueValues)\n                max_continueValues_len=636 if 0> 0 else 635\n                if max_continueValues_len == continueValue_len:\n                    for continueValue in continueValues:\n                        if args.get(key)>444:\n                            continueValue_result=continueValue_result+1\n                            exclude.setdefault(key,args.get(key))\n                    if  continueValue_len== continueValue_result:\n                        result=result+1\n    if 84802 == device_type:\n        same_device_type=same_device_type+1\n        left=[]\n        left.append(\"E162354969848\")\n        for key in args.keys():\n            if key in left:\n                continueValues=_client.updateContinueTime(\"5f50c43c8fe8c076c1ac0297\",tid,678,84802,args.get(key))\n                continueValue_result=0\n                continueValue_len=len(continueValues)\n                max_continueValues_len=97 if 6> 0 else 96\n                if max_continueValues_len == continueValue_len:\n                    for continueValue in continueValues:\n                        if args.get(key)<6:\n                            continueValue_result=continueValue_result+1\n                            exclude.setdefault(key,args.get(key))\n                    if  continueValue_len== continueValue_result:\n                        result=result+1\n    if 84802 == device_type:\n        same_device_type=same_device_type+1\n        left=[]\n        left.append(\"E162355017544\")\n        for key in args.keys():\n            if key in left:\n                if _client.isAssignTime(\"00:13\",\"19:13\") :\n                    assignValues=_client.updateAssignTime(\"5f50c43c8fe8c076c1ac0297\",tid,84802,args.get(key),True)\n                    assignValues_len=len(assignValues)\n                    if args.get(key)>3:\n                        exclude.setdefault(key,args.get(key))\n                        result=result+1\n                else :\n                    _client.updateAssignTime(\"5f50c43c8fe8c076c1ac0297\",tid,84802,args.get(key),False)\n    if 84802 == device_type:\n        same_device_type=same_device_type+1\n        left=[]\n        left.append(\"E162355017544\")\n        for key in args.keys():\n            if key in left:\n                if _client.isAssignTime(\"18:16\",\"19:16\") :\n                    assignValues=_client.updateAssignTime(\"5f50c43c8fe8c076c1ac0297\",tid,84802,args.get(key),True)\n                    assignValues_len=len(assignValues)\n                    if args.get(key)<4:\n                        exclude.setdefault(key,args.get(key))\n                        result=result+1\n                else :\n                    _client.updateAssignTime(\"5f50c43c8fe8c076c1ac0297\",tid,84802,args.get(key),False)\n    if same_device_type == result and result != 4:\n        if 84802 != device_type:\n            alarmRuleConditions=_client.getAlarmRuleConditionList(\"5f50c43c8fe8c076c1ac0297\",84802)\n            if len(alarmRuleConditions) > 0 :\n                for condition in  alarmRuleConditions :\n                    last_result=result+1\n                    continueValues=condition.getContinueValues()\n                    continueValues_len=len(continueValues) \n                    max_continueValues_len=636 if 0> 0 else 635\n                    if continueValues_len > 0 and max_continueValues_len == continueValues_len:\n                        for continueValue in continueValues:\n                            if continueValue >444:\n                                result=result+1\n                                break\n                    if last_result== result:\n                        break\n        if 84802 != device_type:\n            alarmRuleConditions=_client.getAlarmRuleConditionList(\"5f50c43c8fe8c076c1ac0297\",84802)\n            if len(alarmRuleConditions) > 0 :\n                for condition in  alarmRuleConditions :\n                    last_result=result+1\n                    continueValues=condition.getContinueValues()\n                    continueValues_len=len(continueValues) \n                    max_continueValues_len=97 if 6> 0 else 96\n                    if continueValues_len > 0 and max_continueValues_len == continueValues_len:\n                        for continueValue in continueValues:\n                            if continueValue <6:\n                                result=result+1\n                                break\n                    if last_result== result:\n                        break\n        if 84802 != device_type:\n            alarmRuleConditions=_client.getAlarmRuleConditionList(\"5f50c43c8fe8c076c1ac0297\",84802)\n            if len(alarmRuleConditions) > 0 :\n                for condition in  alarmRuleConditions :\n                    last_result=result+1\n                    if _client.isAssignTime(\"00:13\",\"19:13\") :\n                        assignValues=condition.getAssignValues()\n                        assignValues_len=len(assignValues)\n                        if assignValues_len > 0 and assignValues[assignValues_len-1] >3:\n                            result=result+1\n                    if last_result== result:\n                        break\n        if 84802 != device_type:\n            alarmRuleConditions=_client.getAlarmRuleConditionList(\"5f50c43c8fe8c076c1ac0297\",84802)\n            if len(alarmRuleConditions) > 0 :\n                for condition in  alarmRuleConditions :\n                    last_result=result+1\n                    if _client.isAssignTime(\"18:16\",\"19:16\") :\n                        assignValues=condition.getAssignValues()\n                        assignValues_len=len(assignValues)\n                        if assignValues_len > 0 and assignValues[assignValues_len-1] <4:\n                            result=result+1\n                    if last_result== result:\n                        break\n    if result == 2:\n        _client.removeData(exclude,tid)\n        _client.storeAlarmMsg(tid,\"%E6%8C%81%E7%BB%AD4445min%E6%81%92%E6%B8%A9%E6%B0%B4%E7%AE%B1%E6%B0%B4%E4%BD%8D%E5%8F%96%E5%80%BC%E5%A4%A7%E4%BA%8E444%2C%E6%8C%81%E7%BB%AD678min%E6%81%92%E6%B8%A9%E6%B0%B4%E7%AE%B1%E6%B0%B4%E4%BD%8D%E5%8F%96%E5%80%BC%E5%B0%8F%E4%BA%8E6%2C%E5%9C%A8%E6%8C%87%E5%AE%9A%E6%97%B6%E9%97%B4%E5%86%8500%3A13-19%3A13%E6%81%92%E6%B8%A9%E6%B0%B4%E7%AE%B1%E6%B0%B4%E4%BD%8D%E4%BC%A0%E6%84%9F%E5%99%A8%E6%95%85%E9%9A%9C%E5%8F%96%E5%80%BC%E5%A4%A7%E4%BA%8E3%2C%E5%9C%A8%E6%8C%87%E5%AE%9A%E6%97%B6%E9%97%B4%E5%86%8518%3A16-19%3A16%E6%81%92%E6%B8%A9%E6%B0%B4%E7%AE%B1%E6%B0%B4%E4%BD%8D%E4%BC%A0%E6%84%9F%E5%99%A8%E6%95%85%E9%9A%9C%E5%8F%96%E5%80%BC%E5%B0%8F%E4%BA%8E4\", \"WARNING\",\"5f50c43c8fe8c076c1ac0297\",\"5f50c43c8fe8c076c1ac0297\")\n";
+
+        //        try {
+//            String decode = URLDecoder.decode(a, "UTF-8");
+//            System.out.println(decode);
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println(aa);
+//        System.out.println(bb);
+
+        List<Integer> list = new ArrayList();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+        List<Integer> collect = list.stream().filter(a -> a == 2).collect(Collectors.toList());
+        System.out.println(collect);
+    }
+
+
+//    public static void ee(Map map){
+//        String regex = ".*23.*";
+//
+//        String str = "185118369123";
+//        Pattern pattern = Pattern.compile(regex);
+//        Matcher matcher = pattern.matcher(str);
+//        System.out.println(regex + ">>>" + str + ";校验结果为：" + (matcher.matches()? "通过":"未通过"));
+//    }
+//
+//
+//        class Inner {}
+//
+//        public static void foo() { new Test().new Inner();}
+//
+//        public void bar() { new Inner(); }
+//
+//        public static void main(String[] args) {
+//            new Test().new Inner();
+//        }
+
+
 }
